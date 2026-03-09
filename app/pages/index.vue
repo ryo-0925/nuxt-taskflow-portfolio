@@ -81,63 +81,63 @@ const handleAddTodo = () => {
   </main>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .page {
   min-height: 100vh;
-  padding: 40px 16px;
-  background: #f5f7fb;
+  padding: $spacing-xl $spacing-sm;
+  background: $color-bg;
 }
 
 .todo {
   max-width: 640px;
   margin: 0 auto;
-  padding: 24px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
+  padding: $spacing-lg;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
 }
 
 .todo__title {
-  margin: 0 0 8px;
+  margin: 0 0 $spacing-sm;
   font-size: 32px;
 }
 
 .todo__description {
-  margin: 0 0 24px;
-  color: #4b5563;
+  margin: 0 0 $spacing-lg;
+  color: $color-text-muted;
 }
 
 .todo__input {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
 }
 
 .todo__input input {
   flex: 1;
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
 }
 
 .todo__input button,
 .todo__filters button,
 .todo__delete {
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #fff;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
   cursor: pointer;
 }
 
 .todo__filters {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
 }
 
 .todo__filters .is-active {
-  border-color: #111827;
+  border-color: $color-border-strong;
   font-weight: 600;
 }
 
@@ -151,19 +151,19 @@ const handleAddTodo = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 12px 0;
-  border-top: 1px solid #e5e7eb;
+  gap: $spacing-md;
+  padding: $spacing-md 0;
+  border-top: 1px solid $color-border;
 }
 
 .todo__item-main {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: $spacing-sm;
 }
 
 .is-completed {
-  color: #9ca3af;
+  color: $color-text-muted;
   text-decoration: line-through;
 }
 </style>
