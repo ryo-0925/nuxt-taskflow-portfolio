@@ -1,2 +1,3 @@
 # nuxt-taskflow-portfolio
-A Todo app built with Nuxt 3 to showcase frontend architecture, state management, component-driven development, and E2E testing.
+
+Portfolio project for learning frontend architecture, state management, Storybook, and E2E testing with Nuxt 3.
