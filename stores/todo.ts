@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from "vue";
-import type { Todo, TodoFilter } from "~/types/todo";
+import type { Todo, TodoFilter } from '../types/todo'
 
-export const userTodoStore = defineStore('userTodo', () => {
+export const useTodoStore = defineStore('userTodo', () => {
     const todos = ref<Todo[]>([]);
     const filter = ref<TodoFilter>('all');
 
@@ -40,7 +40,7 @@ export const userTodoStore = defineStore('userTodo', () => {
     }
 
     // ToDoの削除
-    cpnst deleteTodo = (id: string) => {
+    const deleteTodo = (id: string) => {
         todos.value = todos.value.filter(todo => todo.id !== id);
     }
 
