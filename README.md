@@ -1,75 +1,70 @@
-# Nuxt Minimal Starter
+# nuxt-taskflow-portfolio
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A Nuxt 3 portfolio project for learning frontend architecture, state management, Storybook, and E2E testing.
+
+## Overview
+
+This project is a Todo application built as a portfolio and learning project.
+
+The main goals are:
+
+- learn basic frontend architecture
+- understand and explain state management design
+- practice component-driven development with Storybook
+- validate core user flows with E2E testing
+- build a portfolio-ready application
+
+## Tech Stack
+
+- Nuxt 3
+- TypeScript
+- Pinia
+- Storybook
+- Playwright
+
+## Planned Features
+
+- Add a new todo
+- Display todo list
+- Toggle completed status
+- Delete a todo
+- Filter todos by status
+- Persist todos in local storage
 
 ## Setup
 
-Make sure to install dependencies:
-
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Pull Request Naming
 
-Build the application for production:
+Pull request titles follow this format:
 
-```bash
-# npm
-npm run build
+`<type>: <summary>`
 
-# pnpm
-pnpm build
+Examples:
 
-# yarn
-yarn build
+- `feat: add todo types and store`
+- `fix: resolve filter state bug`
+- `docs: update README`
+- `test: add e2e test for todo creation`
 
-# bun
-bun run build
-```
+### Types
 
-Locally preview production build:
+- `feat`: new feature
+- `fix`: bug fix
+- `refactor`: code refactoring
+- `docs`: documentation changes
+- `test`: test-related changes
+- `chore`: maintenance or setup changes
 
-```bash
-# npm
-npm run preview
+## Future Improvements
 
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Edit existing todos
+- Add due dates and priorities
+- Introduce search and sorting
+- Improve accessibility
+- Add CI for lint, test, and build
+- Connect to a backend in the future
