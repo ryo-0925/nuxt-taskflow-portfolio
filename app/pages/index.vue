@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
-import { useTodoStore } from '../../stores/todo'
-import type { TodoFilter } from '../../types/todo'
+import { useTodoStore } from '@/stores/todo'
+import type { TodoFilterOption } from '@/types/todo'
+
+import TodoFilter from '@/components/todo/TodoFilter.vue'
+import TodoInput from '@/components/todo/TodoInput.vue'
+import TodoList from '@/components/todo/TodoList.vue'
 
 const todoStore = useTodoStore()
 const { filter, filteredTodos } = storeToRefs(todoStore)
 
 const inputTitle = ref('')
 
-const filters: { label: string; value: TodoFilter }[] = [
+const filters: TodoFilterOption[] = [
   { label: 'All', value: 'all' },
   { label: 'Active', value: 'active' },
   { label: 'Completed', value: 'completed' },
@@ -28,142 +32,69 @@ const handleAddTodo = () => {
       <p class="todo__description">
         A Nuxt 3 portfolio project for learning state management and frontend architecture.
       </p>
+      <TodoInput
+        v-model="inputTitle"
+        @add="handleAddTodo"
+      />
+      <TodoFilter
+        :active-filter="filter"
+        :filters="filters"
+        @select="todoStore.setFilter"
+      />
 
-      <div class="todo__input">
-        <input
-          v-model="inputTitle"
-          type="text"
-          placeholder="Add a new task"
-          @keyup.enter="handleAddTodo"
-        >
-        <button @click="handleAddTodo">
-          Add
-        </button>
-      </div>
-
-      <div class="todo__filters">
-        <button
-          v-for="item in filters"
-          :key="item.value"
-          :class="{ 'is-active': filter === item.value }"
-          @click="todoStore.setFilter(item.value)"
-        >
-          {{ item.label }}
-        </button>
-      </div>
-
-      <ul class="todo__list">
-        <li
-          v-for="todo in filteredTodos"
-          :key="todo.id"
-          class="todo__item"
-        >
-          <label class="todo__item-main">
-            <input
-              type="checkbox"
-              :checked="todo.completed"
-              @change="todoStore.toggleTodo(todo.id)"
-            >
-            <span :class="{ 'is-completed': todo.completed }">
-              {{ todo.title }}
-            </span>
-          </label>
-
-          <button
-            class="todo__delete"
-            @click="todoStore.deleteTodo(todo.id)"
-          >
-            Delete
-          </button>
-        </li>
-      </ul>
+      <TodoList
+        :todos="filteredTodos"
+        @toggle="todoStore.toggleTodo"
+        @delete="todoStore.deleteTodo"
+      />
     </section>
   </main>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .page {
   min-height: 100vh;
-  padding: 40px 16px;
-  background: #f5f7fb;
+  padding: $spacing-xl $spacing-sm;
+  background: $color-bg;
 }
 
 .todo {
   max-width: 640px;
   margin: 0 auto;
-  padding: 24px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
+  padding: $spacing-lg;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
 }
 
 .todo__title {
-  margin: 0 0 8px;
+  margin: 0 0 $spacing-sm;
   font-size: 32px;
 }
 
 .todo__description {
-  margin: 0 0 24px;
-  color: #4b5563;
+  margin: 0 0 $spacing-lg;
+  color: $color-text-muted;
 }
 
 .todo__input {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
 }
 
 .todo__input input {
   flex: 1;
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
 }
 
-.todo__input button,
-.todo__filters button,
-.todo__delete {
+.todo__input button {
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #fff;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
   cursor: pointer;
-}
-
-.todo__filters {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.todo__filters .is-active {
-  border-color: #111827;
-  font-weight: 600;
-}
-
-.todo__list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.todo__item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 0;
-  border-top: 1px solid #e5e7eb;
-}
-
-.todo__item-main {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.is-completed {
-  color: #9ca3af;
-  text-decoration: line-through;
 }
 </style>
